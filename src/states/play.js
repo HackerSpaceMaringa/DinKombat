@@ -100,6 +100,8 @@ module.exports = {
         this.roundText.setText("Round: "+this.round);
         this.win1Text.setText(""+this.player1.win);
         this.win2Text.setText(""+this.player2.win);
+        this.player1.body.x = 200;
+        this.player2.body.x = 800;
       }
     },
 };
