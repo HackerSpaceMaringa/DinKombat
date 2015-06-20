@@ -13,6 +13,7 @@ module.exports = {
       this.loadingLabel();
       game.load.image('menubackground', 'assets/menubackground.jpg');    
       game.load.image('player1_stand2', 'assets/ghost/ghost_stand2.png');    
+      game.load.image('hp', 'assets/hp.png');    
       for(var i = 0; i < 5; i++) 
         game.load.image('map'+i, 'assets/maps/map'+i+'.jpg');
       game.load.audio('soundtrack',    
