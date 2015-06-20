@@ -4,12 +4,17 @@ var Game = new Phaser.Game(950, 540, Phaser.AUTO, 'phaser-example',
 function preload() {
     Game.load.image('background', 'sprites/maps/map4.jpg');
     Game.load.image('player1_stand2', 'sprites/ghost/ghost_stand2.png');
+    Game.load.audio('soundtrack', 
+        ['musics/Flex_Blur_-_Action1.mp3',
+        'musics/Paul_McLellan_-_Speedy_Rides_Again.mp3',
+        'musics/Ralph_Buckley_-_Freedom_Blues.mp3']);
 }
 
 var Player1;
 var Player2;
 var platforms;
 var Control;
+var Music;
 
 function create() {
     Game.world.setBounds(0, 0, 950, 500);
@@ -18,6 +23,9 @@ function create() {
     Game.physics.p2.gravity.y = 25000;
 
     background = Game.add.tileSprite(0, 0, 1000, 600, "background");
+
+    music = Game.add.audio("soundtrack");
+    music.play();
 
     Player1 = Game.add.sprite(200, 410, "player1_stand2");
     Player1.scale.x *= 0.1;
@@ -62,6 +70,6 @@ function update() {
   } 
   
   if (Control.up.isDown && Player1.body.y > 410) {
-    Player1.body.moveUp(18000);
+    Player1.body.moveUp(14000);
   }
 }
