@@ -8,45 +8,39 @@ function preload() {
 
 var Player1;
 var Player2;
-
-function initControls() {
-  var KeyLeft = Game.input.keyboard.addKey(Phaser.Keyboard.LEFT);  
-  KeyLeft.onDown.add(function(KeyUp) {
-    Player1.action = 1;
-  }, this);
-
-  KeyLeft.onUp.add(function(KeyUp) {
-    Player1.action = 0;
-  }, this);
-
-
-  var KeyRight = Game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);  
-  KeyRight.onDown.add(function(KeyUp) {
-    Player1.action = 2;
-  }, this);
-
-  KeyRight.onUp.add(function(KeyUp) {
-    Player1.action = 0;
-  }, this);
-}
+var platforms;
+var Control;
 
 function create() {
+    Game.physics.startSystem(Phaser.Physics.P2JS);
+    Game.physics.p2.defaultRestitution = 0.5;
+    Game.physics.p2.gravity.y = 18000;
+
     background = Game.add.tileSprite(0, 0, 1000, 600, "background");
+
     Player1 = Game.add.sprite(200, 410, "player1_stand2");
     Player1.scale.x *= 0.1;
     Player1.scale.y *= 0.1;
     Player1.anchor.setTo(.5,.5);
-    initControls();
+    Game.physics.p2.enable(Player1);
+    Player1.body.setZeroDamping();
+    Player1.body.fixedRotation = true;
+    Player1.body.collideWorldBounds = true;
+
+    Control = Game.input.keyboard.createCursorKeys();
 }
 
 function update() {
-  if (Player1.action == 1) {
-    if (Player1.scale.x > 0) 
-      Player1.scale.x *= -1;
-      Player1.x -= 3;
-  } else if (Player1.action == 2) {
-    if (Player1.scale.x < 0) 
-      Player1.scale.x *= -1;
-    Player1.x += 3;
+  Player1.body.setZeroVelocity();
+
+  if (Control.left.isDown) {
+    Player1.body.moveLeft(300);
+  } else if (Control.right.isDown) {
+    Player1.body.moveRight(300);
+  } 
+  
+  if (Control.up.isDown && Player1.body.y > 410) {
+    Player1.body.moveUp(8000);
   }
+
 }
