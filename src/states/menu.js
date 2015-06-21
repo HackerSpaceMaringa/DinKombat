@@ -1,7 +1,7 @@
 module.exports = {
   create: function(){
     var music = game.add.audio("soundtrack");
-    music.play();
+    //music.play();
     var background = game.add.tileSprite(0, 0, 1000, 600, "menubackground");
     this.graphics = game.add.graphics(0, 0);
     var keyLeft = game.input.keyboard.addKey(Phaser.Keyboard.LEFT); 

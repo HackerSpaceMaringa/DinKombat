@@ -12,7 +12,8 @@ module.exports = {
     preload: function () {
       this.loadingLabel();
       game.load.image('menubackground', 'assets/menubackground.jpg');    
-      game.load.image('player1_stand2', 'assets/ghost/ghost_stand2.png');    
+      game.load.spritesheet('ghost_s', 'assets/ghost_sprites.png', 275, 309, 10);
+      game.load.spritesheet('hacker_s', 'assets/hacker_sprites.png', 275, 314, 10);
       game.load.image('hp', 'assets/hp.png');    
       for(var i = 0; i < 5; i++) 
         game.load.image('map'+i, 'assets/maps/map'+i+'.jpg');
